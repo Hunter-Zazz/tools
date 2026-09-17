@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Free public Bitcoin transaction flow tracing from Project Poseidon.">
+  <title>Trace Your Stolen Crypto — Poseidon Ledger</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="flow.css">
+  <script src="app.js" defer></script>
+  <script src="flow-render.js" defer></script>
+  <script src="evidence-export.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="mark">Ψ</span><span><strong>POSEIDON LEDGER</strong><small>Public blockchain forensics</small></span></div>
+      <span class="live">● Bitcoin tracer live</span>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">FREE PUBLIC TOOL · READ-ONLY</p>
+        <h1>Trace Your Stolen Crypto</h1>
+        <p class="lead">Enter a Bitcoin transaction ID or wallet address to reconstruct publicly observable fund movement. Poseidon uses public blockchain evidence only — no wallet connection, private keys or account login.</p>
+
+        <form id="trace-form" class="card form-card" novalidate>
+          <div class="fields">
+            <label class="field"><span>Chain</span><select disabled><option>Bitcoin (BTC)</option></select><small>More chains planned.</small></label>
+            <label class="field query"><span>Transaction ID or Bitcoin address</span><input id="query" autocomplete="off" spellcheck="false" placeholder="Paste a TXID or BTC address" required><small>TXIDs and addresses are detected automatically.</small></label>
+            <label class="field"><span>Search batch</span><select disabled><option>10 transactions</option></select><small>More are fetched only when you expand.</small></label>
+            <label class="field"><span>Reporting guidance</span><select id="reporting-country"><option value="general">General / international</option><option value="AU">Australia</option></select><small>Used only inside the downloaded README. We do not infer location from your IP.</small></label>
+          </div>
+          <div class="actions"><button id="trace-button" class="btn primary" type="submit">Trace funds</button><button id="example-button" class="btn secondary" type="button">Try historical example</button></div>
+        </form>
+
+        <div class="trust"><span>No wallet connection</span><span>No private keys</span><span>No transaction signing</span><span>Public blockchain data only</span></div>
+      </section>
+
+      <section class="card doctrine">
+        <div><p class="eyebrow">FORENSIC DOCTRINE</p><p class="quote">Track assets when we can. Track value when asset continuity changes. Never upgrade correlation into proof.</p></div>
+        <p class="note">A blockchain path proves movement between transaction outputs. It does not, by itself, prove who controlled an address or who committed an offence.</p>
+      </section>
+
+      <section id="notice" class="notice" hidden role="status" aria-live="polite"></section>
+
+      <section id="tx-results" class="results" hidden>
+        <div class="results-head">
+          <div><p class="eyebrow">POSEIDON TRACE RESULT</p><h2>Follow the money</h2></div>
+          <div class="export-actions">
+            <button id="download-tx-package" class="btn primary" type="button">Download Evidence Package (.zip)</button>
+            <details class="export-more">
+              <summary>Individual formats</summary>
+              <div class="actions">
+                <button id="download-tx-csv" class="btn secondary" type="button">CSV / Google Sheets</button>
+                <button id="download-tx" class="btn secondary" type="button">JSON</button>
+                <button id="download-tx-xml" class="btn secondary" type="button">XML</button>
+              </div>
+            </details>
+          </div>
+        </div>
+        <div id="summary" class="summaries"></div>
+        <div class="evidence"><span class="badge">PROVEN_ON_CHAIN</span><p>Spent-output links are derived from public Bitcoin transaction and outspend records.</p></div>
+        <div class="layout">
+          <section class="card panel">
+            <div class="panel-head"><div><p class="eyebrow">FLOW</p><h3>Asset trail</h3></div><span id="limit" class="limit"></span></div>
+            <div id="tree" class="tree"></div>
+            <div class="trace-more"><button id="expand-trace" class="btn secondary" type="button" hidden>Expand search · next 10</button><small id="expand-note" hidden></small></div>
+          </section>
+          <aside class="card panel side">
+            <p class="eyebrow">EVIDENCE NOTES</p><h3>What this means</h3>
+            <ul><li><strong>Spent:</strong> the output is publicly linked to a later spending transaction.</li><li><strong>Unspent:</strong> no spending transaction is currently recorded for that output.</li><li><strong>Expand search:</strong> fetches at most ten additional transactions; hidden results are not pre-computed.</li><li><strong>Custodial boundary:</strong> exchange attribution will be shown only with a source and confidence level.</li><li><strong>Evidence package:</strong> ZIP containing README, PDF, CSV, JSON, XML and SHA-256 hashes.</li></ul>
+            <p class="small"><strong>Legal-channel rule:</strong> do not identify, confront, contact, hack or independently recover assets from a suspected offender. Preserve evidence and report through the proper authorities.</p>
+            <p class="small">The package is built locally in your browser; generating it does not upload the trace to a Poseidon server.</p>
+            <p class="small">Provider: mempool.space public REST API. Public rate limits apply.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="address-results" class="results" hidden>
+        <div class="results-head">
+          <div><p class="eyebrow">ADDRESS SNAPSHOT</p><h2>Bitcoin address</h2></div>
+          <div class="export-actions">
+            <button id="download-address-package" class="btn primary" type="button">Download Evidence Package (.zip)</button>
+            <details class="export-more">
+              <summary>Individual formats</summary>
+              <div class="actions">
+                <button id="download-address-csv" class="btn secondary" type="button">CSV / Google Sheets</button>
+                <button id="download-address" class="btn secondary" type="button">JSON</button>
+                <button id="download-address-xml" class="btn secondary" type="button">XML</button>
+              </div>
+            </details>
+          </div>
+        </div>
+        <div id="address-summary" class="summaries"></div>
+        <div class="layout">
+          <section class="card panel"><p class="eyebrow">CURRENT STATE</p><h3>Unspent outputs</h3><div id="utxos" class="list"></div></section>
+          <aside class="card panel"><p class="eyebrow">RECENT ACTIVITY</p><h3>Latest transactions</h3><div id="recent" class="list"></div><p class="small">Address mode is a snapshot. Recursive path tracing is performed from a TXID.</p></aside>
+        </div>
+      </section>
+
+      <section class="roadmap">
+        <p class="eyebrow">POSEIDON LEDGER STATUS</p><h2>Public tracer capability</h2>
+        <div class="roadmap-grid">
+          <article><strong>Live</strong><span>Bitcoin TXID tracing</span></article>
+          <article><strong>Live</strong><span>10-transaction lazy expansion</span></article>
+          <article><strong>Live</strong><span>ZIP evidence package</span></article>
+          <article><strong>Live</strong><span>PDF / CSV / JSON / XML exports</span></article>
+          <article><strong>Next layer</strong><span>Exchange and entity attribution</span></article>
+          <article><strong>Next layer</strong><span>Custodial-boundary hand-off</span></article>
+        </div>
+      </section>
+    </main>
+
+    <footer><p>Project Poseidon · Built for transparent, evidence-led blockchain analysis.</p><p class="small">Informational only. This tool does not identify culpability or replace law-enforcement, legal or professional forensic processes.</p></footer>
+  </div>
+</body>
+</html>
