@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Poseidon Image Forge is a free private browser image converter for WebP, AVIF, JPEG and PNG. Resize, compress and strip image metadata locally on your device.">
+  <title>Image Forge · Hunter + Zazz</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="system-strip" aria-label="Project status">
+    <div class="system-strip-inner">
+      <span>SYS // ONLINE</span>
+      <span>CRYPTO NATIVE // 2013</span>
+      <span>AUSTRALIA // MOBILE</span>
+      <strong>CAPABILITY ≠ PERMISSION</strong>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/" aria-label="Hunter and Zazz home">
+        <img src="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/hunter-zazz-logo.png" alt="Hunter + Zazz logo">
+        <span class="brand-copy">
+          <strong>Hunter + Zazz</strong>
+          <span>Software and security portfolio</span>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/">Home</a>
+        <a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/#work">Work</a>
+        <a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/#latest">Latest</a>
+        <a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/#collective">Collective</a>
+        <a class="current" href="#image-forge" aria-current="page">Tools</a>
+        <a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/tunes-to-code-to">Tunes</a>
+        <a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/contact">Contact</a>
+      </nav>
+
+      <details class="mobile-nav">
+        <summary>Menu</summary>
+        <nav aria-label="Mobile navigation">
+          <a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/">Home</a>
+          <a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/#work">Work</a>
+          <a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/#latest">Latest</a>
+          <a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/#collective">Collective</a>
+          <a class="current" href="#image-forge">Tools</a>
+          <a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/tunes-to-code-to">Tunes to code to</a>
+          <a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/contact">Contact</a>
+          <a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/join">Join</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="image-forge">
+    <section class="tool-hero page-width">
+      <div class="hero-copy">
+        <p class="kicker">TOOLS // OPEN SOURCE · LOCAL-FIRST</p>
+        <h1>Image <em>Forge.</em></h1>
+        <p class="hero-lede">Convert and optimise website images without handing them to a third-party upload service. Everything happens locally in your browser.</p>
+        <div class="hero-actions">
+          <a class="text-link" href="#forge-workspace">Launch tool ↓</a>
+          <a class="text-link subdued" href="https://github.com/Hunter-Zazz/project-poseidon">View source ↗</a>
+        </div>
+      </div>
+
+      <aside class="signal-card" aria-label="Tool capability summary">
+        <p class="signal-label">IMAGE FORGE // READY</p>
+        <dl>
+          <div><dt>Default</dt><dd>WebP · 82%</dd></div>
+          <div><dt>Max width</dt><dd>1920 px</dd></div>
+          <div><dt>Processing</dt><dd>Local browser</dd></div>
+          <div><dt>Metadata</dt><dd>Removed on export</dd></div>
+        </dl>
+        <p class="signal-note">Your original image is not intentionally uploaded to a Poseidon server.</p>
+      </aside>
+    </section>
+
+    <section class="workspace-wrap" id="forge-workspace">
+      <div class="page-width">
+        <div class="section-intro">
+          <p class="kicker">WORKSPACE // IMAGE OPTIMISATION</p>
+          <h2>Make web-ready assets.</h2>
+          <p>Drop in one image or a batch. Use the website preset for a strong general-purpose default, or tune the output yourself.</p>
+        </div>
+
+        <section class="tool-panel" aria-labelledby="upload-title">
+          <div class="panel-heading">
+            <div class="panel-index">01</div>
+            <div><p class="panel-label">SOURCE</p><h3 id="upload-title">Upload images</h3></div>
+            <p class="panel-note">JPEG, PNG, WebP and other formats your browser can decode.</p>
+          </div>
+          <label class="drop-zone" id="dropZone" for="fileInput">
+            <input id="fileInput" type="file" accept="image/*" multiple>
+            <span class="drop-cross">＋</span>
+            <span class="drop-title">Drop images here or choose files</span>
+            <span class="drop-subtitle">LOCAL PROCESSING // NOTHING INTENTIONALLY SENT TO OUR SERVER</span>
+          </label>
+        </section>
+
+        <section class="tool-panel" aria-labelledby="settings-title">
+          <div class="panel-heading">
+            <div class="panel-index">02</div>
+            <div><p class="panel-label">OUTPUT</p><h3 id="settings-title">Optimise</h3></div>
+            <button class="text-button" id="webPreset" type="button">Use website preset ↺</button>
+          </div>
+          <div class="settings-grid">
+            <label class="field"><span>Output format</span><select id="format"><option value="image/webp">WebP — recommended for web</option><option value="image/avif" id="avifOption">AVIF — smaller, if supported</option><option value="image/jpeg">JPEG — broad compatibility</option><option value="image/png">PNG — lossless / transparency</option></select></label>
+            <label class="field"><span>Quality <strong id="qualityValue">82</strong></span><input id="quality" type="range" min="40" max="100" value="82" step="1"></label>
+            <label class="field"><span>Maximum width (px)</span><input id="maxWidth" type="number" min="1" max="12000" value="1920" inputmode="numeric"></label>
+            <label id="jpegBackgroundGroup" class="field" hidden><span>JPEG background</span><input id="jpegBackground" type="color" value="#ffffff"><small id="jpegBackgroundHint">Transparency detected. Choose the colour used to replace transparent pixels in the JPEG.</small></label>
+          </div>
+          <div class="checks"><label class="check"><input id="dontUpscale" type="checkbox" checked> Do not upscale smaller images</label><label class="check"><input id="seoNames" type="checkbox" checked> Make filenames web/SEO friendly</label></div>
+          <div class="preset-strip"><span>WEB PRESET</span><strong>WEBP / QUALITY 82 / 1920 PX MAX / METADATA-FREE EXPORT</strong></div>
+        </section>
+
+        <section class="tool-panel" aria-labelledby="queue-title">
+          <div class="panel-heading">
+            <div class="panel-index">03</div>
+            <div><p class="panel-label">FORGE</p><h3 id="queue-title">Convert + download</h3></div>
+            <div class="actions"><button id="clearButton" class="button secondary" type="button">Clear</button><button id="convertButton" class="button primary" type="button">Convert images</button></div>
+          </div>
+          <div id="emptyState" class="empty-state">NO IMAGES LOADED // ADD ONE OR MORE FILES TO BEGIN</div>
+          <div id="results" class="results" aria-live="polite"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="format-section page-width" aria-labelledby="why-title">
+      <div class="section-intro compact-intro"><p class="kicker">FIELD NOTES // FORMAT SELECTION</p><h2 id="why-title">Which format should I use?</h2></div>
+      <div class="format-guide">
+        <article><span>01</span><h3>WebP</h3><p>Best general default for modern sites: strong compression, transparency and broad browser support.</p></article>
+        <article><span>02</span><h3>AVIF</h3><p>Excellent compression for photographic content when the current browser can encode it.</p></article>
+        <article><span>03</span><h3>JPEG</h3><p>Useful for photographs where maximum compatibility matters. JPEG does not support transparency.</p></article>
+        <article><span>04</span><h3>PNG</h3><p>Use for lossless output, crisp interface artwork or transparency when file size is secondary.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="page-width footer-grid"><div class="footer-brand"><img src="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/hunter-zazz-logo.png" alt=""><div><strong>Hunter + Zazz</strong><p>PERSONAL PROJECTS // CODE · SECURITY · CRYPTO</p></div></div><nav class="footer-nav" aria-label="Footer navigation"><a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/">Home</a><a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/#work">Work</a><a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/#collective">Collective</a><a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/tunes-to-code-to">Tunes</a><a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/contact">Contact</a><a href="https://hunter-poseidon-command-deck.prince-zazz.chatgpt.site/join">Join</a></nav><div class="footer-bottom"><span>POSEIDON IMAGE FORGE // MIT LICENSED CODE // INPUTS + OUTPUTS NOT MIT-LICENSED BY THIS TOOL</span><strong>CAPABILITY ≠ PERMISSION</strong></div></div></footer>
+  <script src="app.js"></script>
+</body>
+</html>
